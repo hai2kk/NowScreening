@@ -7,9 +7,19 @@ import MovieItem from "./MovieItem.js";
 class MovieDetailList extends Component {
   state = { movieDetails: [] };
   componentWillMount() {
-    return axios
-      .get(movieConst.API_URL)
-      .then(response => this.setState({ movieDetails: response.data.results }));
+    return axios.get(movieConst.API_URL).then(response => {
+      const movieDataArr = response.data.results;
+      movieDataArr.sort(compare);
+      console.log(JSON.stringify(movieDataArr));
+      this.setState({ movieDetails: movieDataArr });
+    });
+    //.then(response => this.setState({ movieDetails: response.data.results }));
+
+    function compare(obj1, obj2) {
+      if (obj1.release_date < obj2.release_date) return 1;
+      if (obj1.release_date > obj2.release_date) return -1;
+      return 0;
+    }
   }
 
   renderMovieDetails() {

@@ -1,31 +1,52 @@
 import React, { Component } from "react";
 import { Text, View, Image, Alert, TouchableOpacity } from "react-native";
+import movieConst from "../constants/MovieConstants.js";
 
 class MovieDetails extends React.Component {
-  // Nav options can be defined as a function of the screen's props:
-  /* static navigationOptions = ({ navigation }) => ({
-    title: `Chat with ${navigation.state.params.user}`
-  }); */
-
   static navigationOptions = ({ navigation }) => ({
     title: `${navigation.state.params.original_title}`
   });
 
   render() {
-    // The screen's current route is passed in to `props.navigation.state`:
-    const { params } = this.props.navigation.state;
-    console.log(params.overview);
-    /* return (
-      <View>
-        <Text>Chat with {params.user}</Text>
-      </View>
-    ); */
+    const movieDetail = this.props.navigation.state.params;
+    const imageURI = `${movieConst.IMAGE_URL}${movieDetail.poster_path}`;
+    //  console.log(params.overview);
+
+    const styles = {
+        mainTitleStyle: {
+          fontSize: 18,
+          color: "#010a16",
+          paddingLeft: 10
+        },
+        titleStyle: {
+          fontSize: 12,
+          color: "#010a16",
+          paddingLeft: 10
+        },
+        overviewStyle: {
+          fontSize: 12,
+          color: "#000814"
+        },
+        detailsViewStyle: {
+          flexDirection: "column",
+          justifyContent: "space-around"
+        },
+        overviewViewStyle: {
+          flexDirection: "row",
+          justifyContent: "space-around"
+        },
+        ImageStyle: {
+          height: 300,
+          width: 450
+        }
+    };
 
     return (
-        <View>
-          <Text>{params.overview}</Text>
-        </View>
-      );
+      <View>
+        <Image style={styles.ImageStyle} source={{ uri: imageURI }} />
+        <Text>{movieDetail.overview}</Text>
+      </View>
+    );
   }
 }
 export default MovieDetails;

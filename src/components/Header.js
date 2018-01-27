@@ -20,12 +20,14 @@ const styles = {
         height : 60,
         shadowColor : '#0000cc',
         shadowOffset : {width : 0, height : 20},
-        shadowOpacity : 0.2
+        shadowOpacity : 0.2,
+        marginBottom: 10
     },
     textStyle : {
         fontSize : 20,
         fontWeight : 'bold',
-        color : 'white'
+        color : 'white',
+        marginTop: 20
     }
 }
 
