@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Text, View, Image, Alert, TouchableOpacity } from "react-native";
 import movieConst from "../constants/MovieConstants.js";
+import Rating from "./Rating";
 
 class MovieDetails extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: `${navigation.state.params.original_title}`
+    //title: `${navigation.state.params.original_title}`
   });
 
   render() {
@@ -13,38 +14,42 @@ class MovieDetails extends React.Component {
     //  console.log(params.overview);
 
     const styles = {
-        mainTitleStyle: {
-          fontSize: 18,
-          color: "#010a16",
-          paddingLeft: 10
-        },
-        titleStyle: {
-          fontSize: 12,
-          color: "#010a16",
-          paddingLeft: 10
-        },
-        overviewStyle: {
-          fontSize: 12,
-          color: "#000814"
-        },
-        detailsViewStyle: {
-          flexDirection: "column",
-          justifyContent: "space-around"
-        },
-        overviewViewStyle: {
-          flexDirection: "row",
-          justifyContent: "space-around"
-        },
-        ImageStyle: {
-          height: 300,
-          width: 450
-        }
+      overviewStyle: {
+        fontSize: 12,
+        color: "#000814"
+      },
+      detailsViewStyle: {
+        flexDirection: "column",
+        justifyContent: "space-around",
+        marginLeft: 5,
+        marginTop : 15
+
+      },
+      titleStyle: {
+        flexDirection: "row",
+        fontSize: 21,
+        justifyContent: "space-around",
+        marginLeft: 5
+      },
+      ImageStyle: {
+        height: 300,
+        width: 450
+      },
+      viewStyle: {
+        height: 300,
+        width: 450
+      }
     };
 
     return (
-      <View>
+      <View style={styles.viewStyle}>
         <Image style={styles.ImageStyle} source={{ uri: imageURI }} />
-        <Text>{movieDetail.overview}</Text>
+        <Text style={styles.titleStyle}>{movieDetail.original_title}</Text>
+        <Rating itemRating={movieDetail.vote_average} overAllRating={10} />
+        <Text style={styles.detailsViewStyle}>
+          {movieDetail.vote_average}/10
+        </Text>
+        <Text style={styles.detailsViewStyle}>{movieDetail.overview}</Text>
       </View>
     );
   }

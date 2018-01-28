@@ -18,5 +18,7 @@ const Routes = StackNavigator({
       header: null
     }
   },
-  Detail: { screen: MovieDetails }
+  Detail: {
+    screen: MovieDetails
+  }
 });
